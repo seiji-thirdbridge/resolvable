@@ -1,7 +1,7 @@
-FROM gliderlabs/alpine:3.3
+FROM alpine:3.8
 ENTRYPOINT ["/bin/resolvable"]
 
-RUN apk add --no-cache -t build-deps go git mercurial
+RUN apk add --no-cache -t build-deps go git mercurial musl-dev
 COPY ./config /config
 COPY . /src
 RUN cd /src && ./build.sh "$(cat VERSION)"
