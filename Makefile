@@ -2,8 +2,7 @@ NAME=resolvable
 VERSION=$(shell cat VERSION)
 
 dev:
-	@docker history $(NAME):dev &> /dev/null \
-		|| docker build -f Dockerfile.dev -t $(NAME):dev .
+	docker build -f Dockerfile.dev -t $(NAME):dev .
 	@docker run --rm \
 		--hostname $(NAME) \
 		-v $(PWD):/go/src/github.com/gliderlabs/resolvable \
