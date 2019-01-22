@@ -101,7 +101,13 @@ func registerContainers(docker *dockerapi.Client, events chan *dockerapi.APIEven
 				continue
 			}
 
-			return nil, fmt.Errorf("unknown network mode", container.HostConfig.NetworkMode)
+			if network, ok := container.NetworkSettings.Networks[container.HostConfig.NetworkMode]; ok {
+				if network.IPAddress != "" {
+					return net.ParseIP(network.IPAddress), nil
+				}
+			}
+
+			return nil, fmt.Errorf("unknown network mode %v", container.HostConfig.NetworkMode)
 		}
 	}
 
