@@ -87,9 +87,8 @@ func registerContainers(docker *dockerapi.Client, events chan *dockerapi.APIEven
 			if container.HostConfig.NetworkMode == "host" {
 				if hostIP == nil {
 					return nil, errors.New("IP not available with network mode \"host\"")
-				} else {
-					return hostIP, nil
 				}
+				return hostIP, nil
 			}
 
 			if strings.HasPrefix(container.HostConfig.NetworkMode, "container:") {

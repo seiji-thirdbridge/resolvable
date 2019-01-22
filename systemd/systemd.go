@@ -89,7 +89,7 @@ func (r *SystemdConfig) StoreAddress(address string) error {
 			r.written[s.name] = written
 			reload(s.name)
 		} else {
-			log.Println("systemd: %s: no configs written, skipping reload", s.name)
+			log.Printf("systemd: %s: no configs written, skipping reload", s.name)
 		}
 	}
 
