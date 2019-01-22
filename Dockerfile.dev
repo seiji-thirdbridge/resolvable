@@ -11,5 +11,5 @@ COPY . /go/src/github.com/seiji-thirdbridge/resolvable
 WORKDIR /go/src/github.com/seiji-thirdbridge/resolvable
 RUN go get
 CMD go get \
-	&& go build -ldflags "-X main.Version dev" -o /bin/resolvable \
+	&& go build -ldflags "-X main.Version=dev" -o /bin/resolvable \
 	&& exec /bin/resolvable
